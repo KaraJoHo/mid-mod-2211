@@ -1,0 +1,12 @@
+<h1> Your Food Results </h1>
+<p><strong>Number of Results: <%= @count %></strong></p>
+
+<section class="ten_foods">
+  <% @foods.each do |food| %>
+    <h3 class = "food"><%= food.description %></h3>
+    <li>Description: <%= food.description %></li>
+    <li>GTIN/UPC: <%= food.gtinupc %></li>
+    <li>Brand Owner: <%= food.brand_owner %></li>
+    <li>Ingredients: <%= food.ingredients %></li>
+  <% end %>
+</section>

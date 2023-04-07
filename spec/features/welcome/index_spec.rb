@@ -5,7 +5,7 @@ RSpec.describe "Welcome Page" do
     visit root_path
   end
 
-  describe "When visiting '/'" do 
+  describe "When visiting '/'", :vcr do 
     it "Has a form to search for a food item" do 
       expect(page).to have_field(:q)
       expect(page).to have_button "Search"

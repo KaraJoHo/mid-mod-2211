@@ -3,7 +3,7 @@
 
 <section class="ten_foods">
   <% @foods.each do |food| %>
-    <h3 class = "food"><%= food.description %></h3>
+    <h3 class = "food"><%= food.name %></h3>
     <li>Description: <%= food.description %></li>
     <li>GTIN/UPC: <%= food.gtinupc %></li>
     <li>Brand Owner: <%= food.brand_owner %></li>

@@ -1,12 +1,6 @@
 class FoodsFacade 
   def food_search(query)
-    conn = Faraday.new(url: "https://api.nal.usda.gov/fdc/v1/" ) do |faraday|
-      faraday.headers["X-Api-Key"] = ENV["FOOD_KEY"]
-    end
-
-    search_response = conn.get("foods/search?query=#{query}")
-
-    parsed = JSON.parse(search_response.body, symbolize_names: true)
+    parsed = service.food_search(query)
    
     parsed[:foods].map do |food_info| 
       Food.new(food_info)
@@ -14,15 +8,19 @@ class FoodsFacade
   end
 
   def food_results_count(query)
-    conn = Faraday.new(url: "https://api.nal.usda.gov/fdc/v1/" ) do |faraday|
-      faraday.headers["X-Api-Key"] = ENV["FOOD_KEY"]
-    end
-
-    search_response = conn.get("foods/search?query=#{query}")
-
-    parsed = JSON.parse(search_response.body, symbolize_names: true)
-
+    parsed = service.food_results_count(query)
     parsed[:totalHits]
   end
 
+  def service 
+    @service ||= FoodsService.new
+  end
+
+  def food_search_call
+    @food_search_call ||= food_search(query)
+  end
+
+  def food_results_count_call 
+    @food_results_count_call ||= food_results_count(query)
+  end
 end

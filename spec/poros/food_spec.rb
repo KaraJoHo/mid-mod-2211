@@ -27,6 +27,7 @@ RSpec.describe Food do
       expect(@food.gtinupc).to eq("8901020020844")
       expect(@food.brand_owner).to eq("NOT A BRANDED ITEM")
       expect(@food.ingredients).to eq("ORGANIC SWEET POTATOES.")
+      expect(@food.name).to eq("SWEET POTATOES")
     end
   end
 end
